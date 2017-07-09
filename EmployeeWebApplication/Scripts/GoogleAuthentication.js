@@ -25,13 +25,13 @@ function isUserRegistered(accessToken) {
                 window.location.href = "Data.html";
             }
             else {
-                signupExternalUser(accessToken);
+                signupExternalUser(accessToken,response.LoginProvider);
             }
         }
     });
 }
 
-function signupExternalUser(accessToken) {
+function signupExternalUser(accessToken, provider) {
     $.ajax({
         url: "/api/Account/RegisterExternal",
         method: 'POST',
@@ -40,7 +40,7 @@ function signupExternalUser(accessToken) {
             'Authorization': 'Bearer ' + accessToken
         },
         success: function (response) {
-            window.location.href = "/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A53405%2FLogin.html&state=uYXHrdJ8PHoZ7tl2RHjUp0xcSbi7HmVV09y5-3fVFno1";
+            window.location.href = "/api/Account/ExternalLogin?provider=" + provider + "&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A53405%2FLogin.html&state=uYXHrdJ8PHoZ7tl2RHjUp0xcSbi7HmVV09y5-3fVFno1";
         }
     });
 }
