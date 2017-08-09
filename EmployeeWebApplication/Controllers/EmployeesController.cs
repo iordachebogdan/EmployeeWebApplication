@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace EmployeeWebApplication.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class EmployeesController : ApiController
     {
         public IEnumerable<Employee> Get()
